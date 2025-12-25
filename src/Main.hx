@@ -2,16 +2,23 @@ class Main
 {
     static function main()
     {
-        var symbol = Sys.args()[0];
-        var outDir = Sys.args()[1];
+        var args = Sys.args();
 
-        if (symbol == null || outDir == null)
+        if (args.length < 3)
         {
-            trace("Usage: export <symbolName> <outDir>");
+            trace("Usage:");
+            trace("  export <animate.zip> <symbolName> <outDir>");
             return;
         }
 
-        AnimateToSparrowExporter.export(symbol, outDir);
-        trace("Exported " + symbol);
+        var zip = args[0];
+        var symbol = args[1];
+        var outDir = args[2];
+
+        animate.export.AnimateZipToSparrowExporter.export(
+            zip,
+            symbol,
+            outDir
+        );
     }
 }
